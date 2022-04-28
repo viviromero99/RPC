@@ -1,18 +1,27 @@
 import rpyc
 class MyService(rpyc.Service):
     def on_connect(self, conn):
-# código que é executado quando uma conexão é iniciada, caso seja necessário
+        print('connected')
         pass
     def on_disconnect(self, conn):
-# código que é executado quando uma conexão é finalizada, caso seja necessário
+        print('disconnected')
         pass
-    def exposed_get_answer(self): # este é um método exposto
+
+    def exposed_get_answer(self):
         return 42
-    exposed_the_real_answer_though = 43 # este é um atributo exposto
-    def get_question(self): # este método não é exposto
+    exposed_the_real_answer_though = 43
+
+    def exposed_soma(self, array):
+        soma_total = 0
+        for value in array:
+            soma_total += value
+        return soma_total
+
+    def get_question(self):
         return "Qual é a cor do cavalo branco de Napoleão?"
-#Para iniciar o servidor
+
 if __name__ == "__main__":
     from rpyc.utils.server import ThreadedServer
     t = ThreadedServer(MyService, "localhost", port=18861)
+    print('started server')
     t.start()
