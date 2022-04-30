@@ -1,4 +1,6 @@
 import rpyc
+import time
+
 class MyService(rpyc.Service):
     def on_connect(self, conn):
         print('connected')
@@ -12,9 +14,13 @@ class MyService(rpyc.Service):
     exposed_the_real_answer_though = 43
 
     def exposed_soma(self, array):
+        start = time.time() 
         soma_total = 0
         for value in array:
             soma_total += value
+            
+        end = time.time()
+        print(end-start)
         return soma_total
 
     def get_question(self):
