@@ -13,7 +13,7 @@ array = []
 for i in range(0, n):
     array.append(i)
 
-conn = rpyc.connect(server, 18861)
+conn = rpyc.connect(server, 18866)
 print(array)
 print(conn.root.soma(array))
 
