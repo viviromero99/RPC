@@ -15,6 +15,7 @@ for i in range(0, n):
 
 conn = rpyc.connect(server, 18866, keepalive=True)
 conn._config['sync_request_timeout'] = None
+conn._config['allow_pickle'] = True
 print(array)
 print(conn.root.soma(array))
 
