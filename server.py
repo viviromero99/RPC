@@ -10,6 +10,7 @@ class MyService(rpyc.Service):
         pass
 
     def exposed_get_answer(self):
+        print("conectouu")
         return 42
     exposed_the_real_answer_though = 43
 
@@ -18,7 +19,7 @@ class MyService(rpyc.Service):
         soma_total = 0
         for value in array:
             soma_total += value
-            
+
         end = time.time()
         print(end-start)
         return soma_total
@@ -28,6 +29,6 @@ class MyService(rpyc.Service):
 
 if __name__ == "__main__":
     from rpyc.utils.server import ThreadedServer
-    t = ThreadedServer(MyService, "localhost", port=18861)
+    t = ThreadedServer(MyService, port=18866, protocol_config={'allow_public_attrs': True,})
     print('started server')
     t.start()
