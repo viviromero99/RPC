@@ -4,7 +4,8 @@ import sys
 if len(sys.argv) < 2:
     exit("Usage {} SERVER".format(sys.argv[0]))
 server = sys.argv[1]
-conn = rpyc.connect(server, 18861)
+conn = rpyc.connect(server, 18866, keepalive=True)
+conn._config['sync_request_timeout'] = None
 print(conn.root)
 print(conn.root.get_answer())
 print(conn.root.the_real_answer_though)

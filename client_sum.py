@@ -13,7 +13,8 @@ array = []
 for i in range(0, n):
     array.append(i)
 
-conn = rpyc.connect(server, 18861)
+conn = rpyc.connect(server, 18866, keepalive=True)
+conn._config['sync_request_timeout'] = None
 print(array)
 print(conn.root.soma(array))
 
